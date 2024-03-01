@@ -1,0 +1,20 @@
+service: example-service
+
+provider:
+  name: aws
+  timeout: 30
+  deploymentMethod: direct
+  region: us-east-1
+  ecr:
+    images:
+      hello-world-python-image:
+        path: ./
+
+functions:
+  hello:
+    image:
+      name: hello-world-python-image
+    events:
+      - http: 
+          path: hello
+          method: get
